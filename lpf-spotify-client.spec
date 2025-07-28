@@ -4,20 +4,19 @@
 #global github_repo https://github.com/leamas/spotify-make/archive/%{commit}
 %global github_repo https://github.com/sergiomb2/spotify-make/archive/%{commit}
 # devel branch
-%global commit      62e266b593e4031a9a9209fbd17f287cc4cfb7a5
+%global commit      29df615b140fc4a671ac729a7ad8633bf7233da8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define         target_pkg %(t=%{name}; echo ${t#lpf-})
 
 Name:           lpf-spotify-client
                 # Upstream spotify version, verbatim.
-Version:        1.1.84.716
+Version:        1.2.63.394
 Release:        1%{?dist}
 Summary:        Spotify music player native client package bootstrap
 
 License:        MIT
 URL:            https://github.com/leamas/spotify-make
-Group:          Development/Tools
 ExclusiveArch:  i686 x86_64
 #BuildArch:      noarch
 %global debug_package %{nil}
@@ -31,8 +30,13 @@ Source3:        README
 Source4:        %{github_repo}/spotify-make-%{shortcommit}.tar.gz
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  lpf >= 0.1
-Requires:       lpf >= 0.1
+BuildRequires:  lpf >= 0.3
+BuildRequires:  make
+
+Requires:       desktop-file-utils
+Requires:       python3
+Requires:       /usr/bin/lsb_release
+Requires:       lpf >= 0.3
 
 %description
 Bootstrap package allowing the lpf system to build the non-redistributable
@@ -79,6 +83,84 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Mon Jun 16 2025 Sérgio Basto <sergio@serjux.com> - 1.2.63.394-1
+- Update to 1.2.63.394.g126b0d89
+
+* Fri Apr 18 2025 Sérgio Basto <sergio@serjux.com> - 1.2.60.564-2
+- (rfbz#7212) Add make to BuildRequires
+
+* Thu Apr 17 2025 Sérgio Basto <sergio@serjux.com> - 1.2.60.564-1
+- Update to 1.2.60.564.gcc6305cb
+
+* Mon Mar 24 2025 Sérgio Basto <sergio@serjux.com> - 1.2.59.514-1
+- Update to 1.2.59.514.g834e17d4
+
+* Tue Feb 11 2025 Sérgio Basto <sergio@serjux.com> - 1.2.56.502-1
+- Update to 1.2.56.502.ga68d2d4f
+
+* Sat Jan 18 2025 Sérgio Basto <sergio@serjux.com> - 1.2.53.440-2
+- Update spotify-make
+
+* Sat Jan 18 2025 Sérgio Basto <sergio@serjux.com> - 1.2.53.440-1
+- Update to 1.2.53.440.g7b2f582a
+
+* Tue Dec 17 2024 Sérgio Basto <sergio@serjux.com> - 1.2.52.442-1
+- Update to 1.2.52.442.g01893f92
+
+* Thu Nov 21 2024 Sérgio Basto <sergio@serjux.com> - 1.2.50.335-1
+- Update to 1.2.50.335.g5e2860a8
+
+* Tue Oct 22 2024 Sérgio Basto <sergio@serjux.com> - 1.2.48.405-1
+- Update to 1.2.48.405.gf2c48e6f
+
+* Sun Sep 29 2024 Sérgio Basto <sergio@serjux.com> - 1.2.47.364-2
+- Various fixes on spotify-make to allow install new debians files from spotify
+
+* Sun Sep 29 2024 Sérgio Basto <sergio@serjux.com> - 1.2.47.364-1
+- Update to 1.2.47.364.gf06e5cee
+
+* Tue Sep 17 2024 Sérgio Basto <sergio@serjux.com> - 1.2.45.454-1
+- Update to 1.2.45.454.gc16ec9f6
+
+* Wed Jul 24 2024 Sérgio Basto <sergio@serjux.com> - 1.2.42.290-2
+- Update spotify-make to 854e3fb
+
+* Tue Jul 23 2024 Sérgio Basto <sergio@serjux.com> - 1.2.42.290-1
+- Update to 1.2.42.290.g242057a2
+
+* Tue Jun 25 2024 Sérgio Basto <sergio@serjux.com> - 1.2.40.599-1
+- Update to 1.2.40.599.g606b7f29
+
+* Mon May 27 2024 Sérgio Basto <sergio@serjux.com> - 1.2.37.701-1
+- Update to 1.2.37.701.ge66eb7bc
+- Fixes on spotify-client.spec.in drop require of python2,
+  many more fixes needed
+
+* Mon Feb 26 2024 Sérgio Basto <sergio@serjux.com> - 1.2.31.1205-1
+- Update to 1.2.31.1205.g4d59ad7c
+
+* Mon Dec 18 2023 Sérgio Basto <sergio@serjux.com> - 1.2.26.1187-1
+- Update to 1.2.26.1187.g36b715a1
+
+* Mon Oct 30 2023 Sérgio Basto <sergio@serjux.com> - 1.2.22.982-1
+- Update to 1.2.22.982.g794acc0a
+
+* Thu Aug 31 2023 Sérgio Basto <sergio@serjux.com> - 1.2.18.999-1
+- Update to 1.2.18.999.g9b38fc27
+
+* Tue Jun 20 2023 Sérgio Basto <sergio@serjux.com> - 1.2.13.661-1
+- Update to 1.2.13.661.ga588f749
+
+* Mon May 29 2023 Sérgio Basto <sergio@serjux.com> - 1.2.9.743-1
+- Update to 1.2.9.743.g85d9593d
+
+* Mon Apr 03 2023 Sérgio Basto <sergio@serjux.com> - 1.2.8.923-1
+- Update to 1.2.8.923.g4f94bf0d
+
+* Tue May 03 2022 Sérgio Basto <sergio@serjux.com> - 1.1.84.716-2
+- Update to 1.1.84.716.gc5f8b819-2
+- Exclude from provides all internal shared libraries
+
 * Tue May 03 2022 Sérgio Basto <sergio@serjux.com> - 1.1.84.716-1
 - Update to 1.1.84.716.gc5f8b819
 
